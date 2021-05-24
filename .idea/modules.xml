@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../binance-java-api/binance-api-client.iml" filepath="$PROJECT_DIR$/../binance-java-api/binance-api-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/crypto-wallet.iml" filepath="$PROJECT_DIR$/crypto-wallet.iml" />
     </modules>
   </component>

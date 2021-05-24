@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="crypto-wallet" />
+        <module name="binance-api-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="binance-api-client" target="1.8" />
       <module name="crypto-wallet" target="11" />
     </bytecodeTargetLevel>
   </component>
