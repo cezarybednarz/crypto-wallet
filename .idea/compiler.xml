@@ -9,5 +9,8 @@
         <module name="crypto-wallet-tmp" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="crypto-wallet-tmp" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
