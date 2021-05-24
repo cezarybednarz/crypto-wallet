@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="crypto-wallet-tmp" />
+        <module name="crypto-wallet" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="crypto-wallet-tmp" target="11" />
+      <module name="crypto-wallet" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
