@@ -33,7 +33,7 @@ public class Table {
         for (int i = 0; i < columnNames.size(); i++) {
             String columnName = columnNames.get(i);
             int maxSize = columnName.length();
-            for (int j = 0; j < columnNames.size(); j++) {
+            for (int j = 0; j < rowNames.size(); j++) {
                 if (maxSize < table[i][j].toString().length()) {
                     maxSize = table[i][j].toString().length();
                 }
