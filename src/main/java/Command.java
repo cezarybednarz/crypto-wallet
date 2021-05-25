@@ -22,7 +22,7 @@ public class Command {
         }
 
         System.out.println("command not recognised, please type again");
-        return false;
+        return true;
     }
 
     // handlers for all commands except 'quit'

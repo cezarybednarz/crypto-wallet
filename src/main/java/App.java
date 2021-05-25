@@ -18,9 +18,9 @@ public class App {
         t[0][1] = 2;
         t[0][2] = 3;
         t[1][0] = 4;
-        t[2][1] = 5;
-        t[3][2] = 6;
-        Table table = new Table(Arrays.asList("a_col", "b_col"), Arrays.asList("a_row", "b_roww", "c_rowww"), t);
+        t[1][1] = 5;
+        t[1][2] = 6;
+        Table table = new Table(Arrays.asList("a_coll", "b_colll"), Arrays.asList("a_row", "b_roww", "c_rowww"), t);
         System.out.println(table.toString());
     }
 
