@@ -10,7 +10,7 @@ public class App {
 
     private final static String helloText = String.join("\n",
             "Welcome to Crypto Wallet!",
-            "Use 'help' if you experience any problems");
+            "Use 'help' if you experience any problems :)");
 
     public static void test() {
         Integer[][] t = new Integer[2][3];
@@ -25,22 +25,31 @@ public class App {
     }
 
     public static void main(String[] args) {
-        test();
+        //test();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(helloText);
         boolean finished = false;
+        User user = null;
 
-        String currentUser = "";
         while (!finished) {
-            System.out.print(currentUser + "> ");
+            if (user == null) {
+                System.out.print("> ");
+            } else {
+                System.out.print(user.getUsername() + "> ");
+            }
 
             String line = scanner.nextLine();
             String[] tokens = line.split(" ");
-            Command c = new Command(tokens);
+            Command c = new Command(tokens, user);
 
             if (!c.handle()) {
                finished = true;
+            }
+
+            // retrieve user after 'load' command
+            if (tokens[0].equalsIgnoreCase("load")) {
+                user = c.getUser();
             }
         }
         System.out.println("Exiting...");

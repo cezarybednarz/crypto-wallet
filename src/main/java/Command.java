@@ -6,9 +6,11 @@ public class Command {
 
     // all words from current command from input
     private final String[] tokens;
+    private User user;
 
-    public Command(String[] tokens) {
+    public Command(String[] tokens, User user) {
         this.tokens = tokens;
+        this.user = user;
     }
 
     public boolean handle() {
@@ -34,6 +36,12 @@ public class Command {
         return true;
     }
 
+    // used to get user data after 'load' command
+    public User getUser() {
+        return user;
+    }
+
+
     // handlers for all commands except 'quit'
     private boolean handleHelp() {
         return true;
@@ -44,6 +52,7 @@ public class Command {
     }
 
     private boolean handleLoad() {
+        this.user = new User("admin");
         return true;
     }
 

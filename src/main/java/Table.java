@@ -22,9 +22,9 @@ public class Table {
 
         // compute width of columns
         int firstColumnMaxSize = 0;
-        for (int i = 0; i < rowNames.size(); i++) {
-            if (firstColumnMaxSize < rowNames.get(i).length()) {
-                firstColumnMaxSize = rowNames.get(i).length();
+        for (String s : rowNames) {
+            if (firstColumnMaxSize < s.length()) {
+                firstColumnMaxSize = s.length();
             }
         }
         columnSizes.add(firstColumnMaxSize + 2);
