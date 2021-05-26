@@ -3,25 +3,24 @@
 
 ## Wymagania
  - Java 11
+ - Maven
 
 ## Uruchamianie
 ```shell
-mvn install 
-#todo
+java -jar out/artifacts/crypto_wallet_jar/crypto-wallet.jar
 ```
 
-## Opis
-Prosta apka do zarządzania portfelem inwestycyjnym w kryptowaluty - wyświetlanie listy walut 
-i ich szczegółów, zarządzanie Twoim portfelem, obliczanie zysku/straty
+## Opiss
 
 funkcjonalności:
  - obsługa Binance API
  - zczytywanie ceny kryptowalut na żywo
- - zczytywanie ustawień z pliku .json
+ - wczytywanie użytkowników z pliku
+ - zapisywanie użytkowników w pliku
  - zarządzanie portfelem za pomocą komend w terminalu
- - todo
-  
-Program zaliczeniowy dotyczyć będzie zagadnień związanych ze studiami (ekonomia, finanse itp).
+ - wyświetlanie tabeli z posiadanymi coinami
+ - wpłacanie dolarów na konto, wymiana na BTC, wymiena między kryptowalutami
+ - wszystkie obliczenia dokonywane są z aktualnymi kursami wymiany kryptowalut
 
 | Zagadnienie                                                                            | Stan                 |             
 | -------------------------------------------------------------------------------------- | -------------------- |
@@ -34,5 +33,5 @@ Program zaliczeniowy dotyczyć będzie zagadnień związanych ze studiami (ekono
 | obsługa standardowego wejścia i wyjścia oraz zapis i odczyt do/z pliku                 |          +           |
 | elementy obiektu: pola, metody, konstruktor                                            |          +           |
 | mechanizm przeciążania metod                                                           |          +           |
-| (opcjonalnie) enkapsulacja,                                                            |          -           |
+| (opcjonalnie) enkapsulacja,                                                            |          +           |
 | (opcjonalnie) grafika i tryb graficzny                                                 |          -           |
