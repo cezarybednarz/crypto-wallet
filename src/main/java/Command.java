@@ -87,7 +87,7 @@ public class Command {
     }
 
     private ReturnCode handleLoad() {
-        user = new User("");
+        user = new User();
         if (tokens.length == 1) {
             System.out.println("Please enter path name");
             return ReturnCode.ERROR;
@@ -99,7 +99,7 @@ public class Command {
     }
 
     private ReturnCode handleCreate() {
-        user = new User("");
+        user = new User();
         if (tokens.length == 1) {
             System.out.println("Please specify username");
             return ReturnCode.ERROR;

@@ -20,6 +20,12 @@ public class User {
     private double funds;
     private final Exchange exchange;
 
+    public User() {
+        this.username = "";
+        coins = new ArrayList<>();
+        funds = 0;
+        this.exchange = new Exchange();
+    }
 
     public User(String username) {
         this.username = username;
