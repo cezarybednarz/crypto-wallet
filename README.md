@@ -10,7 +10,7 @@
 java -jar out/artifacts/crypto_wallet_jar/crypto-wallet.jar
 ```
 
-## Opiss
+## Opis
 
 funkcjonalności:
  - obsługa Binance API
