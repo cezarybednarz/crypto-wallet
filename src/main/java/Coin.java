@@ -4,20 +4,22 @@ import com.binance.api.client.domain.market.TickerStatistics;
 
 public class Coin {
 
-    private final BinanceApiRestClient client;
     private final String symbol;
     private double quantity;
+    private final Exchange exchange;
 
     public Coin(String symbol, double quantity) {
         this.symbol = symbol;
         this.quantity = quantity;
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
-        this.client = factory.newRestClient();
+        this.exchange = new Exchange();
     }
 
     public double getPriceUSD() {
-        TickerStatistics tickerStatistics = client.get24HrPriceStatistics(this.symbol + "USDT");
-        return Double.parseDouble(tickerStatistics.getLastPrice());
+        double rate = exchange.getRate(symbol, "USDT");
+        if (rate < 0.0) {
+            return rate;
+        }
+        return rate * quantity;
     }
 
     public String getSymbol() {
@@ -26,6 +28,10 @@ public class Coin {
 
     public double getQuantity() {
         return quantity;
+    }
+
+    public double getQuantityByPercentage(double p) {
+        return quantity * p / 100.0;
     }
 
     public void addQuantity(double q) {

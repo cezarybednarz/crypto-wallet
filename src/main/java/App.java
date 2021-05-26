@@ -36,6 +36,9 @@ public class App {
                 case USER_LOADED:
                     user = c.getUser();
                     break;
+                case ERROR:
+                    System.out.println("Error occurred!");
+                    break;
             }
         }
         System.out.println("Exiting...");

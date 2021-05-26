@@ -9,7 +9,7 @@ public class Table {
     private final List<String> rowNames;
     private final Object[][] table;
 
-    public Table(List<String> columnNames, List<String> rowNames, Object[][] table) {
+    public Table(List<String> rowNames, List<String> columnNames, Object[][] table) {
         this.columnNames = columnNames;
         this.rowNames = rowNames;
         this.table = table;

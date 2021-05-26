@@ -2,6 +2,8 @@ import com.binance.api.client.BinanceApiClientFactory;
 import com.binance.api.client.BinanceApiRestClient;
 import com.binance.api.client.domain.market.TickerStatistics;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -11,13 +13,20 @@ public class User {
     // available funds in USD
     // you can buy only Bitcoin with those funds
     private double funds;
-    private final BinanceApiRestClient client;
+    private final Exchange exchange;
 
 
     public User(String username) {
         this.username = username;
-        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
-        this.client = factory.newRestClient();
+        coins = new ArrayList<>();
+        funds = 0;
+        this.exchange = new Exchange();
+    }
+
+    public User(Path filePath) {
+        username = "TODO";
+        this.exchange = new Exchange();
+        // todo
     }
 
     public String getUsername() {
@@ -45,14 +54,46 @@ public class User {
         funds += money;
     }
 
+    public boolean removeFunds(double money) {
+        if (money > funds) {
+            return false;
+        }
+        funds -= money;
+        return true;
+    }
+
+    public boolean sellBitcoinToFunds(double quantity) {
+        Coin btc = getCoinBySymbol("BTC");
+        if (btc == null) {
+            return false;
+        }
+
+        if (!btc.removeQuantity(quantity)) {
+            return false;
+        }
+
+        double rate = exchange.getRate("BTC", "USDT");
+        if (rate < 0.0) {
+            return false;
+        }
+
+        double money = rate * quantity;
+        addFunds(money);
+        return true;
+    }
+
     public boolean buyBitcoinWithFunds(double money) {
         if (money > funds) {
             return false;
         }
         funds -= money;
 
-        TickerStatistics tickerStatistics = client.get24HrPriceStatistics("USDTBTC");
-        double quantity = Double.parseDouble(tickerStatistics.getLastPrice());
+        double rate = exchange.getRate("BTC", "USDT");
+        if (rate < 0.0) {
+            return false;
+        }
+        rate = 1.0 / rate;
+        double quantity = rate * money;
         AddQuantityToCoin("BTC", quantity);
         return true;
     }
@@ -60,7 +101,7 @@ public class User {
     public void AddQuantityToCoin(String symbol, double quantity) {
         Coin c = getCoinBySymbol(symbol);
         if (c == null) {
-            coins.add(new Coin("symbol", quantity));
+            coins.add(new Coin(symbol, quantity));
         }
         else {
             c.addQuantity(quantity);
@@ -73,8 +114,11 @@ public class User {
     }
 
     public boolean transferBetweenCoins(String toRemoveSymbol, double toRemoveQuantity, String toAddSymbol) {
-        TickerStatistics tickerStatistics = client.get24HrPriceStatistics(toRemoveSymbol + toAddSymbol);
-        double rate = Double.parseDouble(tickerStatistics.getLastPrice());
+        double rate = exchange.getRate(toRemoveSymbol, toAddSymbol);
+        if (rate < 0.0) {
+            return false;
+        }
+
         double toAddQuantity = toRemoveQuantity * rate;
 
         if (!RemoveQuantityFromCoin(toRemoveSymbol, toRemoveQuantity)) {
