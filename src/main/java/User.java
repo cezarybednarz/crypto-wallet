@@ -1,15 +1,23 @@
+import com.binance.api.client.BinanceApiClientFactory;
+import com.binance.api.client.BinanceApiRestClient;
+import com.binance.api.client.domain.market.TickerStatistics;
+
 import java.util.List;
 
 public class User {
 
-    private String username;
+    private final String username;
     private List<Coin> coins;
     // available funds in USD
     // you can buy only Bitcoin with those funds
     private double funds;
+    private final BinanceApiRestClient client;
+
 
     public User(String username) {
         this.username = username;
+        BinanceApiClientFactory factory = BinanceApiClientFactory.newInstance();
+        this.client = factory.newRestClient();
     }
 
     public String getUsername() {
@@ -42,12 +50,11 @@ public class User {
             return false;
         }
         funds -= money;
-        // todo
-    }
 
-    public void buyBitcoinWithAllFunds() {
-        funds = 0.0;
-        // todo
+        TickerStatistics tickerStatistics = client.get24HrPriceStatistics("USDTBTC");
+        double quantity = Double.parseDouble(tickerStatistics.getLastPrice());
+        AddQuantityToCoin("BTC", quantity);
+        return true;
     }
 
     public void AddQuantityToCoin(String symbol, double quantity) {
@@ -65,8 +72,17 @@ public class User {
         return c != null && c.removeQuantity(quantity);
     }
 
-    public boolean transferBetweenCoins(Coin toAdd, Coin toRemove) {
-        // todo
+    public boolean transferBetweenCoins(String toRemoveSymbol, double toRemoveQuantity, String toAddSymbol) {
+        TickerStatistics tickerStatistics = client.get24HrPriceStatistics(toRemoveSymbol + toAddSymbol);
+        double rate = Double.parseDouble(tickerStatistics.getLastPrice());
+        double toAddQuantity = toRemoveQuantity * rate;
+
+        if (!RemoveQuantityFromCoin(toRemoveSymbol, toRemoveQuantity)) {
+            return false;
+        }
+
+        AddQuantityToCoin(toAddSymbol, toAddQuantity);
+        return true;
     }
 
 }
