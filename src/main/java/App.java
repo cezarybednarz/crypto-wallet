@@ -8,13 +8,12 @@ import java.util.Scanner;
 
 public class App {
 
-    private final static String helloText = String.join("\n",
-            "Welcome to Crypto Wallet!",
-            "Use 'help' if you experience any problems :)");
-
     public static void main(String[] args) {
+        System.out.println(String.join("\n",
+                "Welcome to Crypto Wallet!",
+                "Use 'help' if you experience any problems :)"));
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println(helloText);
         boolean finished = false;
         User user = null;
         Exchange exchange = new Exchange();
@@ -42,6 +41,7 @@ public class App {
                     break;
             }
         }
+        scanner.close();
         System.out.println("Exiting...");
     }
 }

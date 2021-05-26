@@ -71,10 +71,40 @@ public class Command {
     // handlers for all commands except 'quit'
     private ReturnCode handleHelp() {
         System.out.println(String.join("\n",
-                "Available commands:",
-                "'help'    : show all available commands",
-                "'whoAmI'  : show user data",
-                " todo"));
+                "Available commands:                                      ",
+                "help    -> show all available commands                           \n",
+                "whoAmI  -> show user data                                        \n",
+                "load <file path>                                                   ",
+                "        -> load user data from <file path>,                        ",
+                "           for example 'load users/tomek.txt                     \n",
+                "create <username>                                                  ",
+                "        -> create new user with given username                   \n",
+                "save <file path>                                                   ",
+                "        -> save file to given <file path>,                         ",
+                "           for example 'save users/kacper.txt'                   \n",
+                "wallet  -> show all coins in wallet (and their value in dollars) \n",
+                "buy <coin to buy> <coin to sell> -p <percentage>                   ",
+                "        -> sell <percentage> percents of quantity of <coin to sell>",
+                "buy <coin to buy> <coin to sell> -q <quantity>                     ",
+                "        -> sell given <quantity> of <coin to sell>               \n",
+                "total   -> show summed up value of all coins                     \n",
+                "transfer in <amount>                                               ",
+                "        -> transfer <amount> of dollars to account                 ",
+                "transfer out <amount>                                              ",
+                "        -> remove <amount> of dollars from your account            ",
+                "transfer btc in -p <percentage>                                    ",
+                "        -> transfer <percentage> of dollars into BTC               ",
+                "transfer btc in -q <quantity>                                      ",
+                "        -> transfer <quantity> of dollars into BTC                 ",
+                "transfer btc out -p <percentage>                                   ",
+                "        -> transfer <percentage> of BTC into dollars               ",
+                "transfer btc out -q <quantity>                                     ",
+                "        -> transfer <quantity> of BTC into dollars               \n",
+                "rate <symbol 1> <symbol 2>                                         ",
+                "        -> show exchange rate of <symbol 1>/<symbol 2>           \n",
+                "symbols -> show all possible exchanges                           \n",
+                "funds   -> show amount of dollars available to exchange to BTC   \n"
+        ));
         return ReturnCode.OK;
     }
 
