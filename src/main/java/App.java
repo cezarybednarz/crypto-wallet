@@ -12,21 +12,7 @@ public class App {
             "Welcome to Crypto Wallet!",
             "Use 'help' if you experience any problems :)");
 
-    public static void test() {
-        Integer[][] t = new Integer[2][3];
-        t[0][0] = 1;
-        t[0][1] = 2;
-        t[0][2] = 333333333;
-        t[1][0] = 4;
-        t[1][1] = 5;
-        t[1][2] = 6;
-        Table table = new Table(Arrays.asList("a_coll", "b_colll"), Arrays.asList("a_row", "b_roww", "c_rowww"), t);
-        System.out.println(table);
-    }
-
     public static void main(String[] args) {
-        //test();
-
         Scanner scanner = new Scanner(System.in);
         System.out.println(helloText);
         boolean finished = false;
@@ -43,13 +29,13 @@ public class App {
             String[] tokens = line.split(" ");
             Command c = new Command(tokens, user);
 
-            if (!c.handle()) {
-               finished = true;
-            }
-
-            // retrieve user after 'load' command
-            if (tokens[0].equalsIgnoreCase("load")) {
-                user = c.getUser();
+            switch (c.handle()) {
+                case QUIT:
+                    finished = true;
+                    break;
+                case USER_LOADED:
+                    user = c.getUser();
+                    break;
             }
         }
         System.out.println("Exiting...");

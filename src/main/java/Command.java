@@ -8,20 +8,26 @@ public class Command {
     private final String[] tokens;
     private User user;
 
+    public enum ReturnCode {
+        QUIT, OK, USER_LOADED
+    }
+
     public Command(String[] tokens, User user) {
         this.tokens = tokens;
         this.user = user;
     }
 
-    public boolean handle() {
+    public ReturnCode handle() {
         if (tokens[0].equalsIgnoreCase("quit")) {
-            return false;
+            return ReturnCode.QUIT;
         } else if (tokens[0].equalsIgnoreCase("help")) {
             return handleHelp();
         } else if (tokens[0].equalsIgnoreCase("whoAmI")) {
             return handleWhoAmI();
         } else if (tokens[0].equalsIgnoreCase("load")) {
             return handleLoad();
+        } else if (tokens[0].equalsIgnoreCase("save")) {
+            return handleSave();
         } else if (tokens[0].equalsIgnoreCase("wallet")) {
             return handleWallet();
         } else if (tokens[0].equalsIgnoreCase("buy")) {
@@ -30,10 +36,12 @@ public class Command {
             return handleSell();
         } else if (tokens[0].equalsIgnoreCase("total")) {
             return handleTotal();
+        } else if (tokens[0].equalsIgnoreCase("transfer")) {
+            return handleTransfer();
         }
 
         System.out.println("command not recognised, please type again");
-        return true;
+        return ReturnCode.OK;
     }
 
     // used to get user data after 'load' command
@@ -43,32 +51,42 @@ public class Command {
 
 
     // handlers for all commands except 'quit'
-    private boolean handleHelp() {
-        return true;
+    private ReturnCode handleHelp() {
+        System.out.println(String.join("\n",
+                "Available commands:",
+                "'help'    : show all available commands",
+                "'whoAmI'  : show user data",
+                " todo"));
+        return ReturnCode.OK;
     }
 
-    private boolean handleWhoAmI() {
-        return true;
+    private ReturnCode handleWhoAmI() {
+        return ReturnCode.OK;
     }
 
-    private boolean handleLoad() {
-        this.user = new User("admin");
-        return true;
+    private ReturnCode handleLoad() {
+        return ReturnCode.USER_LOADED;
     }
 
-    private boolean handleWallet() {
-        return true;
+    private ReturnCode handleSave() {
+        return ReturnCode.USER_LOADED;
     }
 
-    private boolean handleBuy() {
-        return true;
+    private ReturnCode handleWallet() {
+        return ReturnCode.OK;
     }
 
-    private boolean handleSell() {
-        return true;
+    private ReturnCode handleBuy() {
+        return ReturnCode.OK;
     }
 
-    private boolean handleTotal() {
-        return true;
+    private ReturnCode handleSell() {
+        return ReturnCode.OK;
     }
+
+    private ReturnCode handleTotal() {
+        return ReturnCode.OK;
+    }
+
+    private ReturnCode handleTransfer() { return ReturnCode.OK; }
 }
