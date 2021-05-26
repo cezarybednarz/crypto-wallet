@@ -21,7 +21,7 @@ public class Exchange {
         }
     }
 
-    private boolean goodSymbol(String symbol) {
+    public boolean goodSymbol(String symbol) {
         return symbols.contains(symbol);
     }
 
@@ -30,11 +30,14 @@ public class Exchange {
     }
 
     public double getRate(String first, String second) {
-        if (!goodSymbol(first+second)) {
-            System.out.println("No " + first + " / " + second + " rate in database");
-            return -1.0;
+        if (goodSymbol(first+second)) {
+            TickerStatistics tickerStatistics = client.get24HrPriceStatistics(first + second);
+            return Double.parseDouble(tickerStatistics.getLastPrice());
+        } else if (goodSymbol(second+first)) {
+            TickerStatistics tickerStatistics = client.get24HrPriceStatistics(second + first);
+            return 1.0 / Double.parseDouble(tickerStatistics.getLastPrice());
         }
-        TickerStatistics tickerStatistics = client.get24HrPriceStatistics(first + second);
-        return Double.parseDouble(tickerStatistics.getLastPrice());
+        System.out.println("No " + first + "/" + second + " or " +  second + "/" + first + " rate in database");
+        return -1.0;
     }
 }

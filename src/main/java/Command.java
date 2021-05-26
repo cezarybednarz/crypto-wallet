@@ -42,8 +42,6 @@ public class Command {
             return handleWallet();
         } else if (tokens[0].equalsIgnoreCase("buy")) {
             return handleBuy();
-        } else if (tokens[0].equalsIgnoreCase("sell")) {
-            return handleSell();
         } else if (tokens[0].equalsIgnoreCase("total")) {
             return handleTotal();
         } else if (tokens[0].equalsIgnoreCase("transfer")) {
@@ -103,7 +101,7 @@ public class Command {
     }
 
     private ReturnCode handleWallet() {
-        if(user == null) {
+        if (user == null) {
             System.out.println("Please load user first");
             return ReturnCode.ERROR;
         }
@@ -122,17 +120,48 @@ public class Command {
     }
 
     private ReturnCode handleBuy() {
-        // todo
-        return ReturnCode.OK;
-    }
+        if (tokens.length != 5) {
+            System.out.println("Usage: buy <symbol> <symbol> <flag> <value>");
+            return ReturnCode.ERROR;
+        }
 
-    private ReturnCode handleSell() {
-        // todo
+        boolean isPercentage;
+        if (tokens[3].equalsIgnoreCase("-p")) {
+            isPercentage = true;
+        } else if (tokens[3].equalsIgnoreCase("-q")) {
+            isPercentage = false;
+        } else {
+            System.out.println("Unknown flag");
+            return ReturnCode.ERROR;
+        }
+
+        Coin coinToSell = user.getCoinBySymbol(tokens[2]);
+        if (coinToSell == null) {
+            System.out.println("There is no such coin as " + tokens[2] + " in your wallet");
+            return ReturnCode.ERROR;
+        }
+
+        double value = Double.parseDouble(tokens[4]);
+
+        double quantityToSell = isPercentage ? coinToSell.getQuantityByPercentage(value) : value;
+        double rate = exchange.getRate(tokens[2], tokens[1]);
+        double quantityToAdd = quantityToSell * rate;
+
+        if (!user.RemoveQuantityFromCoin(tokens[2], quantityToSell)) {
+            System.out.println("Not enough quantity of coin " + tokens[2] + " to sell");
+        }
+
+        user.AddQuantityToCoin(tokens[1], quantityToAdd);
+
         return ReturnCode.OK;
     }
 
     private ReturnCode handleTotal() {
-        // todo
+        double total = 0.0;
+        for (Coin c : user.getCoins()) {
+            total += c.getPriceUSD();
+        }
+        System.out.println("Total account value: " + String.format("%.2f", total) + "$");
         return ReturnCode.OK;
     }
 

@@ -110,7 +110,16 @@ public class User {
 
     public boolean RemoveQuantityFromCoin(String symbol, double quantity) {
         Coin c = getCoinBySymbol(symbol);
-        return c != null && c.removeQuantity(quantity);
+        if (c == null) {
+            return false;
+        }
+
+        // remove coin when quantity near 0.0
+        if (Math.abs(quantity - c.getQuantity()) <= 1e-9) {
+            coins.remove(c);
+        }
+
+        return c.removeQuantity(quantity);
     }
 
     public boolean transferBetweenCoins(String toRemoveSymbol, double toRemoveQuantity, String toAddSymbol) {

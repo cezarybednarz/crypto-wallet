@@ -31,7 +31,8 @@ public class Coin {
     }
 
     public double getQuantityByPercentage(double p) {
-        return quantity * p / 100.0;
+        // add 1e-9 to fix rounding errors
+        return quantity * p / (100.0 + 1e-9);
     }
 
     public void addQuantity(double q) {
