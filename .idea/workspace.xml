@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce99a9bf-9475-46b9-bc5f-38b7cbcf7df6" name="Default Changelist" comment="Add Maven dependencies">
+      <change afterPath="$PROJECT_DIR$/users/kacper.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/tomek.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Exchange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Exchange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,12 +40,15 @@
     <setting file="file://$PROJECT_DIR$/README.md" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
   </component>
   <component name="ProjectId" id="1szzgjQvnwrz3FGxR6ypuJaf6Dy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -102,7 +106,7 @@
       <workItem from="1621890322879" duration="2120000" />
       <workItem from="1621893797977" duration="4268000" />
       <workItem from="1621954910837" duration="17423000" />
-      <workItem from="1622022260202" duration="24785000" />
+      <workItem from="1622022260202" duration="27984000" />
     </task>
     <task id="LOCAL-00001" summary="Add Maven dependencies">
       <created>1621896642271</created>
@@ -130,6 +134,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Add Maven dependencies" />
     <option name="LAST_COMMIT_MESSAGE" value="Add Maven dependencies" />
   </component>

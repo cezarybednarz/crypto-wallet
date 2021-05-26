@@ -19,13 +19,17 @@ public class Command {
         QUIT, OK, ERROR, USER_LOADED
     }
 
-    public Command(String[] tokens, User user) {
+    public Command(String[] tokens, User user, Exchange exchange) {
         this.tokens = tokens;
         this.user = user;
-        this.exchange = new Exchange();
+        this.exchange = exchange;
     }
 
     public ReturnCode handle() {
+        if(tokens.length == 0) {
+            return ReturnCode.OK;
+        }
+
         if (tokens[0].equalsIgnoreCase("quit")) {
             return ReturnCode.QUIT;
         } else if (tokens[0].equalsIgnoreCase("help")) {
@@ -50,13 +54,15 @@ public class Command {
             return handleRate();
         } else if (tokens[0].equalsIgnoreCase("symbols")) {
             return handleSymbols();
+        } else if (tokens[0].equalsIgnoreCase("funds")) {
+            return handleFunds();
         }
 
         System.out.println("command not recognised, please type again");
         return ReturnCode.OK;
     }
 
-    // used to get user data after 'load' command
+    // used to get user data after 'load' and 'create' command
     public User getUser() {
         return user;
     }
@@ -81,11 +87,19 @@ public class Command {
     }
 
     private ReturnCode handleLoad() {
-        // todo
+        user = new User("");
+        if (tokens.length == 1) {
+            System.out.println("Please enter path name");
+            return ReturnCode.ERROR;
+        }
+        if (!user.LoadUserFromFile(tokens[1])) {
+            return ReturnCode.ERROR;
+        }
         return ReturnCode.USER_LOADED;
     }
 
     private ReturnCode handleCreate() {
+        user = new User("");
         if (tokens.length == 1) {
             System.out.println("Please specify username");
             return ReturnCode.ERROR;
@@ -96,7 +110,13 @@ public class Command {
     }
 
     private ReturnCode handleSave() {
-        // todo
+        if (tokens.length == 1) {
+            System.out.println("Please enter path name");
+            return ReturnCode.ERROR;
+        }
+        if (!user.SaveUserToFile(tokens[1])) {
+            return ReturnCode.ERROR;
+        }
         return ReturnCode.OK;
     }
 
@@ -266,6 +286,15 @@ public class Command {
 
     private ReturnCode handleSymbols() {
         exchange.showSymbols();
+        return ReturnCode.OK;
+    }
+
+    private ReturnCode handleFunds() {
+        if (user == null) {
+            System.out.println("Please load user first");
+            return ReturnCode.ERROR;
+        }
+        System.out.println("Funds: " + user.getFunds());
         return ReturnCode.OK;
     }
 }

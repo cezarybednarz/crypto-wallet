@@ -17,6 +17,7 @@ public class App {
         System.out.println(helloText);
         boolean finished = false;
         User user = null;
+        Exchange exchange = new Exchange();
 
         while (!finished) {
             if (user == null) {
@@ -27,7 +28,7 @@ public class App {
 
             String line = scanner.nextLine();
             String[] tokens = line.split(" ");
-            Command c = new Command(tokens, user);
+            Command c = new Command(tokens, user, exchange);
 
             switch (c.handle()) {
                 case QUIT:

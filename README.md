@@ -31,7 +31,7 @@ Program zaliczeniowy dotyczyć będzie zagadnień związanych ze studiami (ekono
 | enumeracja,                                                                            |          +           |
 | tablice, wbudowane i dynamiczne ArrayList                                              |          +           |
 | instrukcje sterujące przebiegiem programu: wszystkie rodzaje warunków i iteracji       |          +           |
-| obsługa standardowego wejścia i wyjścia oraz zapis i odczyt do/z pliku                 |                      |
+| obsługa standardowego wejścia i wyjścia oraz zapis i odczyt do/z pliku                 |          +           |
 | elementy obiektu: pola, metody, konstruktor                                            |          +           |
 | mechanizm przeciążania metod                                                           |                      |
 | (opcjonalnie) enkapsulacja,                                                            |          -           |
