@@ -167,21 +167,4 @@ public class User {
 
         return c.removeQuantity(quantity);
     }
-
-    public boolean transferBetweenCoins(String toRemoveSymbol, double toRemoveQuantity, String toAddSymbol) {
-        double rate = exchange.getRate(toRemoveSymbol, toAddSymbol);
-        if (rate < 0.0) {
-            return false;
-        }
-
-        double toAddQuantity = toRemoveQuantity * rate;
-
-        if (!RemoveQuantityFromCoin(toRemoveSymbol, toRemoveQuantity)) {
-            return false;
-        }
-
-        AddQuantityToCoin(toAddSymbol, toAddQuantity);
-        return true;
-    }
-
 }

@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ce99a9bf-9475-46b9-bc5f-38b7cbcf7df6" name="Default Changelist" comment="Add Maven dependencies">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/users/kacper2.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Coin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/crypto_wallet_jar/crypto-wallet.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/crypto_wallet_jar/crypto-wallet.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +99,7 @@
       <workItem from="1621893797977" duration="4268000" />
       <workItem from="1621954910837" duration="17423000" />
       <workItem from="1622022260202" duration="33032000" />
-      <workItem from="1622101548773" duration="356000" />
+      <workItem from="1622101548773" duration="3415000" />
     </task>
     <task id="LOCAL-00001" summary="Add Maven dependencies">
       <created>1621896642271</created>
